@@ -1,0 +1,10 @@
+name: CustomRecipes
+version: '${version}'
+author: mighty
+main: com.cedricverlinden.customrecipes.CustomRecipes
+api-version: '1.20'
+
+commands:
+  debug:
+    description: Debug command
+    usage: /<command>
