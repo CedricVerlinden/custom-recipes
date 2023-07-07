@@ -35,15 +35,15 @@ public class Chat {
 	}
 
 	public Component debug(Component comp) {
-		return color("<dark_green>[DEBUG]</dark_green> <green>" + comp);
+		return color("<dark_green>[DEBUG]</dark_green> <green>" + miniMessage.serialize(comp));
 	}
 
 	public Component debug(String str) {
-		return debug(Component.text(str));
+		return debug(miniMessage.deserialize(str));
 	}
 
 	public Component warning(Component comp) {
-		return color("<gold>[WARNING]</gold> <yellow>" + comp);
+		return color("<gold>[WARNING]</gold> <yellow>" + miniMessage.serialize(comp));
 	}
 
 	public Component warning(String str) {
@@ -51,7 +51,7 @@ public class Chat {
 	}
 
 	public Component error(Component comp) {
-		return color("<dark_red>[ERROR]</dark_red> <red>" + comp);
+		return color("<dark_red>[ERROR]</dark_red> <red>" + miniMessage.serialize(comp));
 	}
 
 	public Component error(String str) {
