@@ -15,6 +15,8 @@ public class Chat {
 				.tags(TagResolver.builder()
 						.resolver(StandardTags.color())
 						.resolver(StandardTags.decorations())
+						.resolver(StandardTags.rainbow())
+						.resolver(StandardTags.gradient())
 						.resolver(StandardTags.reset())
 						.build()
 				)

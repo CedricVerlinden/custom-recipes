@@ -1,13 +1,14 @@
 package com.cedricverlinden.customrecipes;
 
+import java.util.Objects;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
 import com.cedricverlinden.customrecipes.commands.DebugCommand;
 import com.cedricverlinden.customrecipes.listeners.PlayerListener;
 import com.cedricverlinden.customrecipes.managers.ItemManager;
 import com.cedricverlinden.customrecipes.managers.RecipeManager;
 import com.cedricverlinden.customrecipes.utils.Log;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Objects;
 
 public final class CustomRecipes extends JavaPlugin {
 
@@ -18,6 +19,9 @@ public final class CustomRecipes extends JavaPlugin {
 	public void onEnable() {
 		instance = this;
 		log = new Log();
+
+		saveResource("items/test-item.yml", true);
+		saveResource("recipes/test-recipe.yml", true);
 
 		ItemManager.registerItems();
 		RecipeManager.registerRecipes();

@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 
 public class Log {
 
-	Chat chat;
+	private final Chat chat;
 
 	public Log() {
 		chat = new Chat();

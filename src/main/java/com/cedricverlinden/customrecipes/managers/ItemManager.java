@@ -46,7 +46,7 @@ public class ItemManager {
 
 		itemStack.setItemMeta(itemMeta);
 
-		String id = chat.stripString(displayName.trim().replace(" ", "-"));
+		String id = chat.stripString(displayName.trim().replace(" ", "-")).toLowerCase();
 
 		FileManager fileManager = new FileManager("items", id);
 		configuration = fileManager.getFile();

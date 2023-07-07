@@ -1,0 +1,5 @@
+displayName: <red>Test Item
+material: DIAMOND_SWORD
+lore:
+- <rainbow>Rainbow lore!
+- <gradient:#00ff87:#60efff>Gradient lore!
