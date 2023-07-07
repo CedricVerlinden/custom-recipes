@@ -1,11 +1,27 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,intellij,java,gradle
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,intellij,java,gradle
+# Created by https://www.toptal.com/developers/gitignore/api/windows,git,intellij,visualstudiocode,java,gradle
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,git,intellij,visualstudiocode,java,gradle
+
+.idea/
+.vscode/
+
+### Git ###
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-
-.idea/
 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -142,6 +158,25 @@ fabric.properties
 hs_err_pid*
 replay_pid*
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -195,4 +230,4 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,intellij,java,gradle
+# End of https://www.toptal.com/developers/gitignore/api/windows,git,intellij,visualstudiocode,java,gradle
