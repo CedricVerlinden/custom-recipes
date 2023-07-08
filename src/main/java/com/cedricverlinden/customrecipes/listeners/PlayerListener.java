@@ -16,7 +16,9 @@ public class PlayerListener implements Listener {
 
 		HashMap<String, ItemManager> items = ItemManager.getItems();
 		for (ItemManager item : items.values()) {
-			if (player.getInventory().contains(item.getItemStack())) continue;
+			if (player.getInventory().contains(item.getItemStack())) {
+				player.getInventory().remove(item.getItemStack());
+			}
 			
 			player.getInventory().addItem(item.getItemStack());
 		}

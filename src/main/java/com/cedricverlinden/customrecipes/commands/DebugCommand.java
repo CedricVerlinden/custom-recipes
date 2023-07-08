@@ -3,6 +3,9 @@ package com.cedricverlinden.customrecipes.commands;
 import com.cedricverlinden.customrecipes.managers.ItemManager;
 import com.cedricverlinden.customrecipes.utils.Chat;
 import com.cedricverlinden.customrecipes.utils.Log;
+
+import net.kyori.adventure.text.Component;
+
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,13 +28,13 @@ public class DebugCommand implements CommandExecutor {
 
 		Chat chat = new Chat();
 
-		ItemStack hand = player.getInventory().getItemInMainHand();
-		if (hand.getType().equals(Material.AIR)) {
-			player.sendMessage(chat.warning("Something went wrong, are you sure you are holding an item?"));
-			return true;
-		}
+		if (args.length == 0) {
+			ItemStack hand = player.getInventory().getItemInMainHand();
+			if (hand.getType().equals(Material.AIR)) {
+				player.sendMessage(chat.warning("Something went wrong, are you sure you are holding an item?"));
+				return true;
+			}
 
-		if (args.length == 0 && !hand.getType().equals(Material.AIR)) {
 			String id = Chat.stripComponent(hand.displayName()).replace(" ", "-");
 			ItemManager item = ItemManager.getItem(id);
 			if (item == null) {
@@ -71,6 +74,14 @@ public class DebugCommand implements CommandExecutor {
 					player.getInventory().addItem(item.getItemStack());
 					return true;
 				}
+			}
+
+			if ("reload".equals(param)) {
+				// TODO: refresh items in player's inventory
+				ItemManager.getItems().clear();
+				ItemManager.registerItems();
+				player.sendMessage(chat.debug(Component.text("Reloaded items (recipes needs restart).")));
+				return true;
 			}
 		}
 

@@ -50,11 +50,10 @@ public class ItemManager {
 
 		FileManager fileManager = new FileManager("items", id);
 		configuration = fileManager.getFile();
-
 		configuration.set("material", material.toString());
 		configuration.set("displayName", displayName);
 		configuration.set("lore", lore);
-
+		
 		fileManager.save();
 		items.put(id, this);
 	}
@@ -76,10 +75,15 @@ public class ItemManager {
 
 			if (!missingFields.isEmpty()) {
 				String missingFieldsString = missingFields.size() > 1
-						? String.join(", ", missingFields.subList(0, missingFields.size() - 1)) + (missingFields.size() > 2 ? "," : "") + " and " + missingFields.get(missingFields.size() - 1)
+						? String.join(", ", missingFields.subList(0, missingFields.size() - 1))
+								+ (missingFields.size() > 2 ? "," : "") + " and "
+								+ missingFields.get(missingFields.size() - 1)
 						: missingFields.get(0);
 
-				log.error("Could not load item \"" + file.getName().substring(0, file.getName().length() - 4) + "\" because it is missing " + (missingFields.size() > 1 ? "the following fields: " : "the following field: ") + missingFieldsString);
+				log.error("Could not load item \"" + file.getName().substring(0, file.getName().length() - 4)
+						+ "\" because it is missing "
+						+ (missingFields.size() > 1 ? "the following fields: " : "the following field: ")
+						+ missingFieldsString);
 				continue;
 			}
 
@@ -89,7 +93,6 @@ public class ItemManager {
 
 			new ItemManager(material, displayName, lore);
 		}
-
 
 		int itemSize = items.size();
 		log.info("Loaded " + itemSize + " " + (itemSize == 1 ? "item" : "items") + ".");

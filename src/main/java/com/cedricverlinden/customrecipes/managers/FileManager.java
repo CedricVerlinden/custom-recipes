@@ -5,6 +5,7 @@ import com.cedricverlinden.customrecipes.utils.Log;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class FileManager {
@@ -21,7 +22,11 @@ public class FileManager {
 		file.getParentFile().mkdirs();
 
 		if (!(file.exists())) {
-			CustomRecipes.getInstance().saveResource(path.replace("/", File.separator) + File.separator + fileName, false);
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		editableFile = YamlConfiguration.loadConfiguration(file);
@@ -36,6 +41,16 @@ public class FileManager {
 		File[] files = new File(path).listFiles();
 		if (files != null) {
 			return List.of(files);
+		}
+
+		return null;
+	}
+
+	public static File getFile(String folder, String fileName) {
+		String path = dataFolder + File.separator + folder.replace("/", File.separator);
+		File file = new File(path, fileName + ".yml");
+		if (file.exists()) {
+			return file;
 		}
 
 		return null;

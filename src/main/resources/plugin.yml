@@ -8,3 +8,6 @@ commands:
   debug:
     description: Debug command
     usage: /<command>
+  item:
+    description: Item management command
+    usage: /<command>
