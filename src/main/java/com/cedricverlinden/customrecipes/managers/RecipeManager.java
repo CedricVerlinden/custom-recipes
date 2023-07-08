@@ -30,8 +30,6 @@ public class RecipeManager {
 		this.itemStacks = itemStacks;
 		this.result = result;
 
-		log.debug(itemStacks.toString());
-
 		if (ItemManager.getItem(result) == null && Material.getMaterial(result) == null) {
 			log.error("Item " + result + " does not exist.");
 			return;
@@ -44,25 +42,6 @@ public class RecipeManager {
 		FileManager fileManager = new FileManager("recipes", recipeName);
 		YamlConfiguration configuration = fileManager.getFile();
 		configuration.set("result", result);
-
-		for (int i = 0; i < itemStacks.size(); i++) {
-			List<String> row = itemStacks.get(i);
-			configuration.set("row_" + (i + 1), row);
-			for (int j = 0; j < row.size(); j++) {
-				String item = row.get(j);
-				if (ItemManager.getItem(item) == null && Material.getMaterial(item) == null) {
-					// TODO: Add more information to the error message
-					log.error("Item " + item + " does not exist.");
-					continue;
-				}
-
-				ItemStack itemStack = (Material.getMaterial(item) == null)
-						? ItemManager.getItem(item).getItemStack()
-						: new ItemStack(Objects.requireNonNull(Material.getMaterial(item)));
-
-				log.debug((i + 1) + "." + (j + 1) + ": " + itemStack);
-			}
-		}
 
 		NamespacedKey key = new NamespacedKey(CustomRecipes.getInstance(), recipeName);
 		ShapedRecipe recipe = new ShapedRecipe(key, resultMaterial);
@@ -101,6 +80,7 @@ public class RecipeManager {
 			return;
 		}
 
+		int recipeCount = 0;
 		log.info("Loading recipes...");
 		for (File file : files) {
 			YamlConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(file);
@@ -124,10 +104,11 @@ public class RecipeManager {
 					.toList();
 			String result = fileConfiguration.getString("result");
 
+			recipeCount++;
 			new RecipeManager(fileName, itemStacks, result);
 		}
 
-		log.info("Loaded recipes.");
+		log.info("Loaded " + recipeCount + " " + (recipeCount == 1 ? "recipe" : "recipes") + ".");
 	}
 
 	public String getRecipeName() {
