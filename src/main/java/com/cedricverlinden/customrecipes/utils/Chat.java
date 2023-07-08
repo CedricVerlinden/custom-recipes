@@ -1,5 +1,9 @@
 package com.cedricverlinden.customrecipes.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
@@ -9,15 +13,19 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 public class Chat {
 
 	private final MiniMessage miniMessage;
+	private final List<TagResolver> tagResolvers = new ArrayList<>(
+		Arrays.asList(
+			StandardTags.color(),
+			StandardTags.decorations(),
+			StandardTags.rainbow(),
+			StandardTags.gradient(),
+			StandardTags.reset()
+	));
 
 	public Chat() {
 		miniMessage = MiniMessage.builder()
 				.tags(TagResolver.builder()
-						.resolver(StandardTags.color())
-						.resolver(StandardTags.decorations())
-						.resolver(StandardTags.rainbow())
-						.resolver(StandardTags.gradient())
-						.resolver(StandardTags.reset())
+						.resolvers(tagResolvers)
 						.build()
 				)
 				.build();
@@ -49,7 +57,7 @@ public class Chat {
 	}
 
 	public Component warning(String str) {
-		return warning(Component.text(str));
+		return warning(miniMessage.deserialize(str));
 	}
 
 	public Component error(Component comp) {
@@ -57,10 +65,10 @@ public class Chat {
 	}
 
 	public Component error(String str) {
-		return error(Component.text(str));
+		return error(miniMessage.deserialize(str));
 	}
 
 	public String stripString(String str) {
-		return miniMessage.stripTags(str, TagResolver.resolver(StandardTags.color(), StandardTags.decorations()));
+		return miniMessage.stripTags(str, TagResolver.resolver(tagResolvers));
 	}
 }
