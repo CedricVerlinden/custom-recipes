@@ -6,6 +6,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.cedricverlinden.customrecipes.commands.DebugCommand;
 import com.cedricverlinden.customrecipes.commands.ItemCommand;
+import com.cedricverlinden.customrecipes.commands.RecipeCommand;
+import com.cedricverlinden.customrecipes.listeners.InventoryListener;
 import com.cedricverlinden.customrecipes.listeners.PlayerListener;
 import com.cedricverlinden.customrecipes.managers.ItemManager;
 import com.cedricverlinden.customrecipes.managers.RecipeManager;
@@ -39,12 +41,14 @@ public final class CustomRecipes extends JavaPlugin {
 		log.info("Registering commands...");
 		Objects.requireNonNull(getCommand("debug")).setExecutor(new DebugCommand());
 		Objects.requireNonNull(getCommand("item")).setExecutor(new ItemCommand());
-		log.info("Listeners commands.");
+		Objects.requireNonNull(getCommand("recipe")).setExecutor(new RecipeCommand());
+		log.info("Commands registered.");
 	}
 
 	private void registerListeners() {
 		log.info("Registering listeners...");
 		getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+		getServer().getPluginManager().registerEvents(new InventoryListener(), this);
 		log.info("Listeners registered.");
 	}
 

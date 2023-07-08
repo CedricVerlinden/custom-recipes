@@ -11,3 +11,6 @@ commands:
   item:
     description: Item management command
     usage: /<command>
+  recipe:
+    description: Recipe management command
+    usage: /<command>

@@ -52,6 +52,7 @@ public class RecipeManager {
 
 		for (int i = 0; i < 3; i++) {
 			List<String> row = itemStacks.get(i);
+			configuration.set("row_" + (i + 1), row);
 			for (int j = 0; j < 3; j++) {
 				String item = row.get(j);
 				if (ItemManager.getItem(item) == null && Material.getMaterial(item) == null) {

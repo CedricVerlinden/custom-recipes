@@ -3,7 +3,7 @@ package com.cedricverlinden.customrecipes.prompts;
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 
-public final class ItemCreatePrompt implements Prompt {
+public final class ItemCreationPrompt implements Prompt {
 
 	@Override
 	public String getPromptText(ConversationContext context) {

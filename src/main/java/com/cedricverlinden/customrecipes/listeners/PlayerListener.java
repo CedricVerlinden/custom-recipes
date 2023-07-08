@@ -1,12 +1,13 @@
 package com.cedricverlinden.customrecipes.listeners;
 
-import com.cedricverlinden.customrecipes.managers.ItemManager;
+import java.util.HashMap;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.HashMap;
+import com.cedricverlinden.customrecipes.managers.ItemManager;
 
 public class PlayerListener implements Listener {
 

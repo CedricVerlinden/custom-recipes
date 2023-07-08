@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.cedricverlinden.customrecipes.CustomRecipes;
 import com.cedricverlinden.customrecipes.managers.ItemManager;
-import com.cedricverlinden.customrecipes.prompts.ItemCreatePrompt;
+import com.cedricverlinden.customrecipes.prompts.ItemCreationPrompt;
 import com.cedricverlinden.customrecipes.utils.Chat;
 import com.cedricverlinden.customrecipes.utils.Log;
 
@@ -75,7 +75,7 @@ public class ItemCommand implements CommandExecutor {
                 .withConversationCanceller(new ExactMatchConversationCanceller("exit"))
                 .withTimeout(60)
                 .withLocalEcho(false)
-                .withFirstPrompt(new ItemCreatePrompt())
+                .withFirstPrompt(new ItemCreationPrompt())
                 .buildConversation(player);
 
         player.beginConversation(conversation);
