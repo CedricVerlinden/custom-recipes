@@ -39,7 +39,7 @@ public class FileManager {
 	public static List<File> getFiles(String folder) {
 		String path = dataFolder + File.separator + folder.replace("/", File.separator);
 		File[] files = new File(path).listFiles();
-		if (files != null) {
+		if (files != null && files.length > 0) {
 			return List.of(files);
 		}
 
