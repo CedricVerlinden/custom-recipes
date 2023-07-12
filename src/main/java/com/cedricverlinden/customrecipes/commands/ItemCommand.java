@@ -6,7 +6,6 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.conversations.Conversable;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.ConversationFactory;
 import org.bukkit.conversations.ExactMatchConversationCanceller;
@@ -69,8 +68,7 @@ public class ItemCommand implements CommandExecutor {
     public void conversation(Player player) {
         Conversation conversation = new ConversationFactory(CustomRecipes.getInstance())
                 .addConversationAbandonedListener(event -> {
-                    Conversable conversable = event.getContext().getForWhom();
-
+                    Chat chat = new Chat();
                     if (event.gracefulExit()) {
                         String displayName = (String) event.getContext().getSessionData("displayName");
                         String lore = event.getContext().getSessionData("lore").toString();
@@ -79,10 +77,11 @@ public class ItemCommand implements CommandExecutor {
                         ItemManager item = new ItemManager(player.getInventory().getItemInMainHand().getType(),
                                 displayName, loreList);
                         player.getInventory().addItem(item.getItemStack());
+                        player.sendMessage(chat.color("<#3185fc>Item has been created and added to your inventory."));
                         return;
                     }
 
-                    conversable.sendRawMessage("Item creation has been cancelled.");
+                    player.sendMessage(chat.color("<#e84855>Item creation has been cancelled."));
                 })
                 .withConversationCanceller(new ExactMatchConversationCanceller("exit"))
                 .withTimeout(60)
