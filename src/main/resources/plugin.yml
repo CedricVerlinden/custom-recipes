@@ -10,7 +10,9 @@ commands:
     usage: /<command>
   item:
     description: Item management command
+    aliases: [items]
     usage: /<command>
   recipe:
     description: Recipe management command
+    aliases: [recipes]
     usage: /<command>

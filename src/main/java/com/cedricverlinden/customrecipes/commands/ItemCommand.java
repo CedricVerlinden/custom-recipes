@@ -38,17 +38,28 @@ public class ItemCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length >= 1) {
-            String param = args[0].toLowerCase();
-            if ("create".equals(param)) {
-                ItemStack hand = player.getInventory().getItemInMainHand();
-                if (hand.getType().isAir()) {
-                    player.sendMessage(chat.warning("Something went wrong, are you sure you are holding an item?"));
-                    return true;
-                }
-
-                conversation(player);
+        String param = args[0].toLowerCase();
+        if ("create".equals(param)) {
+            ItemStack hand = player.getInventory().getItemInMainHand();
+            if (hand.getType().isAir()) {
+                player.sendMessage(chat.warning("Something went wrong, are you sure you are holding an item?"));
+                return true;
             }
+
+            conversation(player);
+            return true;
+        }
+
+        if ("list".equals(param)) {
+            player.sendMessage(chat.color("<#403F4C><strikethrough>----------------------------------------\n"));
+            player.sendMessage(chat.color("<#E84855>\u029F\u026As\u1D1B \u1D0F\uA730 \u1D00\u029F\u029F \u026A\u1D1B\u1D07\u1D0Ds:"));
+            ItemManager.getItems().keySet().forEach(item -> {
+                ItemManager im = ItemManager.getItems().get(item);
+                String lore = im.getLore().toString().replace("[", "").replace("]", "").replace(", ", "\n");
+                player.sendMessage(chat.color(" <#403F4C>-  <hover:show_text:\"" + im.getDisplayName() + "\n" + lore +"\"><#3185FC>" + chat.stripString(im.getDisplayName()) + "</hover> <#F9DC5C><italic>(file: " + item + ".yml)"));
+            });
+            player.sendMessage(chat.color("\n<#403F4C><strikethrough>----------------------------------------"));
+            return true;
         }
 
         return true;
