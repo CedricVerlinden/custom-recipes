@@ -75,7 +75,6 @@ public class RecipeManager {
 
 	public static void registerRecipes() {
 		List<File> files = FileManager.getFiles("recipes");
-		// TODO: files is not null when folder is created, same for ItemManager
 		if (files == null) {
 			log.info("Could not find any recipes, not loading any.");
 			return;
