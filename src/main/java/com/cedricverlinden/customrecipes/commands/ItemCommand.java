@@ -34,7 +34,7 @@ public class ItemCommand implements CommandExecutor {
         Chat chat = new Chat();
 
         if (args.length == 0) {
-            player.sendMessage(chat.debug("Usage: /item <create>"));
+            player.sendMessage(chat.color("<#e84855>Something went wrong executing this command. Try using: /item <create/list>"));
             return true;
         }
 
@@ -42,7 +42,7 @@ public class ItemCommand implements CommandExecutor {
         if ("create".equals(param)) {
             ItemStack hand = player.getInventory().getItemInMainHand();
             if (hand.getType().isAir()) {
-                player.sendMessage(chat.warning("Something went wrong, are you sure you are holding an item?"));
+                player.sendMessage(chat.color("<#e84855>Something went wrong, are you sure you are holding an item?"));
                 return true;
             }
 
@@ -62,6 +62,7 @@ public class ItemCommand implements CommandExecutor {
             return true;
         }
 
+        player.sendMessage(chat.color("<#e84855>Something went wrong executing this command. Try using: /item <create/list>"));
         return true;
     }
 
