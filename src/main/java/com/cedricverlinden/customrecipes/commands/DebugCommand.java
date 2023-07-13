@@ -27,6 +27,10 @@ public class DebugCommand implements CommandExecutor {
 		}
 
 		Chat chat = new Chat();
+		if (!player.hasPermission("customrecipes.debug")) {
+			player.sendMessage(chat.color("You don't have permission to execute this command."));
+			return true;
+		}
 
 		if (args.length == 0) {
 			ItemStack hand = player.getInventory().getItemInMainHand();
