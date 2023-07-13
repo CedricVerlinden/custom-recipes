@@ -1,6 +1,7 @@
 package com.cedricverlinden.customrecipes;
 
 import com.cedricverlinden.customrecipes.commands.DebugCommand;
+import com.cedricverlinden.customrecipes.commands.ForgerCommand;
 import com.cedricverlinden.customrecipes.commands.ItemCommand;
 import com.cedricverlinden.customrecipes.commands.RecipeCommand;
 import com.cedricverlinden.customrecipes.listeners.InventoryListener;
@@ -42,6 +43,7 @@ public final class CustomRecipes extends JavaPlugin {
 
 	private void registerCommands() {
 		log.info("Registering commands...");
+		Objects.requireNonNull(getCommand("forger")).setExecutor(new ForgerCommand());
 		Objects.requireNonNull(getCommand("debug")).setExecutor(new DebugCommand());
 		Objects.requireNonNull(getCommand("item")).setExecutor(new ItemCommand());
 		Objects.requireNonNull(getCommand("recipe")).setExecutor(new RecipeCommand());

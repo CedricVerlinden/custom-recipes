@@ -5,6 +5,10 @@ main: com.cedricverlinden.customrecipes.CustomRecipes
 api-version: '1.20'
 
 commands:
+  forger:
+    permission: forger.reload
+    description: Main plugin command
+    usage: /<command>
   debug:
     permission: customrecipes.debug
     description: Debug command
