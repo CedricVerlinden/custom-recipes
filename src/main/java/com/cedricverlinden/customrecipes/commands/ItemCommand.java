@@ -31,8 +31,10 @@ public class ItemCommand implements CommandExecutor {
         }
 
         Chat chat = new Chat();
-
-        // TODO: add permission
+		if (!player.hasPermission("customrecipes.item")) {
+			player.sendMessage(chat.color("You don't have permission to execute this command."));
+			return true;
+		}
 
         if (args.length == 0) {
             player.sendMessage(chat.color("<#e84855>Something went wrong executing this command. Try using: /item <create/list>"));
