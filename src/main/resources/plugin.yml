@@ -5,6 +5,10 @@ main: com.cedricverlinden.forger.Forger
 api-version: '1.20'
 
 commands:
+  forger:
+    permission: forger.reload
+    description: Main plugin command
+    usage: /<command>
   debug:
     permission: forger.debug
     description: Debug command
