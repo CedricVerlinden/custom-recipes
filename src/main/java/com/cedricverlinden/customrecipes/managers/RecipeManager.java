@@ -111,6 +111,12 @@ public class RecipeManager {
 		log.info("Loaded " + recipeCount + " " + (recipeCount == 1 ? "recipe" : "recipes") + ".");
 	}
 
+	public static List<String> getRecipes() {
+		return FileManager.getFiles("recipes").stream()
+				.map(file -> file.getName().substring(0, file.getName().length() - 4))
+				.toList();
+	}
+
 	public String getRecipeName() {
 		return recipeName;
 	}

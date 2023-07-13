@@ -34,7 +34,7 @@ public class InventoryListener implements Listener {
         }
 
         if (!hasItem || inventory.getItem(0) == null) {
-            event.getPlayer().sendMessage(new Chat().error("The recipe requires at least one item to be placed in one of the 9 crafting slots, and the result slot must contain an item."));
+            event.getPlayer().sendMessage(new Chat().error("The recipe requires at least one item to be placed in one of the 9 crafting slots, and the result slot must contain an item. Cancelling recipe creation..."));
             return;
         }
 

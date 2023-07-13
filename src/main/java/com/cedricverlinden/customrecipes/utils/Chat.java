@@ -19,6 +19,7 @@ public class Chat {
 			StandardTags.decorations(),
 			StandardTags.rainbow(),
 			StandardTags.gradient(),
+			StandardTags.hoverEvent(),
 			StandardTags.reset()
 	));
 
