@@ -1,16 +1,17 @@
-package com.cedricverlinden.customrecipes.managers;
-
-import com.cedricverlinden.customrecipes.CustomRecipes;
-import com.cedricverlinden.customrecipes.utils.Log;
-import org.bukkit.configuration.file.YamlConfiguration;
+package com.cedricverlinden.forger.managers;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import com.cedricverlinden.forger.Forger;
+import com.cedricverlinden.forger.utils.Log;
+
 public class FileManager {
 
-	private static final File dataFolder = CustomRecipes.getInstance().getDataFolder();
+	private static final File dataFolder = Forger.getInstance().getDataFolder();
 
 	private final Log log;
 	private final File file;

@@ -1,10 +1,6 @@
-package com.cedricverlinden.customrecipes.commands;
+package com.cedricverlinden.forger.commands;
 
-import com.cedricverlinden.customrecipes.managers.ItemManager;
-import com.cedricverlinden.customrecipes.utils.Chat;
-import com.cedricverlinden.customrecipes.utils.Log;
-
-import net.kyori.adventure.text.Component;
+import java.util.HashMap;
 
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -14,7 +10,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
+import com.cedricverlinden.forger.managers.ItemManager;
+import com.cedricverlinden.forger.utils.Chat;
+import com.cedricverlinden.forger.utils.Log;
+
+import net.kyori.adventure.text.Component;
 
 public class DebugCommand implements CommandExecutor {
 
@@ -27,7 +27,7 @@ public class DebugCommand implements CommandExecutor {
 		}
 
 		Chat chat = new Chat();
-		if (!player.hasPermission("customrecipes.debug")) {
+		if (!player.hasPermission("forger.debug")) {
 			player.sendMessage(chat.color("You don't have permission to execute this command."));
 			return true;
 		}
@@ -81,7 +81,6 @@ public class DebugCommand implements CommandExecutor {
 			}
 
 			if ("reload".equals(param)) {
-				// TODO: refresh items in player's inventory
 				ItemManager.getItems().clear();
 				ItemManager.registerItems();
 				player.sendMessage(chat.debug(Component.text("Reloaded items (recipes needs restart).")));

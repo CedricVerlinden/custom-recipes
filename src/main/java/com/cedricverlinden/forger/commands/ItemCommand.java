@@ -1,4 +1,4 @@
-package com.cedricverlinden.customrecipes.commands;
+package com.cedricverlinden.forger.commands;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,17 +13,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import com.cedricverlinden.customrecipes.CustomRecipes;
-import com.cedricverlinden.customrecipes.managers.ItemManager;
-import com.cedricverlinden.customrecipes.prompts.ItemCreationPrompt;
-import com.cedricverlinden.customrecipes.utils.Chat;
-import com.cedricverlinden.customrecipes.utils.Log;
+import com.cedricverlinden.forger.Forger;
+import com.cedricverlinden.forger.managers.ItemManager;
+import com.cedricverlinden.forger.prompts.ItemCreationPrompt;
+import com.cedricverlinden.forger.utils.Chat;
+import com.cedricverlinden.forger.utils.Log;
 
 public class ItemCommand implements CommandExecutor {
 
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
-            @NotNull String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         Log log = new Log();
         if (!(sender instanceof Player player)) {
             log.error("Only players can execute this command.");
@@ -31,10 +30,10 @@ public class ItemCommand implements CommandExecutor {
         }
 
         Chat chat = new Chat();
-		if (!player.hasPermission("customrecipes.item")) {
-			player.sendMessage(chat.color("You don't have permission to execute this command."));
-			return true;
-		}
+        if (!player.hasPermission("forger.item")) {
+            player.sendMessage(chat.color("You don't have permission to execute this command."));
+            return true;
+        }
 
         if (args.length == 0) {
             player.sendMessage(chat.color("<#e84855>Something went wrong executing this command. Try using: /item <create/list>"));
@@ -59,18 +58,21 @@ public class ItemCommand implements CommandExecutor {
             ItemManager.getItems().keySet().forEach(item -> {
                 ItemManager im = ItemManager.getItems().get(item);
                 String lore = im.getLore().toString().replace("[", "").replace("]", "").replace(", ", "\n");
-                player.sendMessage(chat.color(" <#403F4C>-  <hover:show_text:\"" + im.getDisplayName() + "\n" + lore +"\"><#3185FC>" + chat.stripString(im.getDisplayName()) + "</hover> <#F9DC5C><italic>(file: " + item + ".yml)"));
+                player.sendMessage(chat.color(" <#403F4C>-  <hover:show_text:\"" + im.getDisplayName() + "\n" + lore
+                        + "\"><#3185FC>" + chat.stripString(im.getDisplayName()) + "</hover> <#F9DC5C><italic>(file: "
+                        + item + ".yml)"));
             });
             player.sendMessage(chat.color("\n<#403F4C><strikethrough>----------------------------------------"));
             return true;
         }
 
-        player.sendMessage(chat.color("<#e84855>Something went wrong executing this command. Try using: /item <create/list>"));
+        player.sendMessage(
+                chat.color("<#e84855>Something went wrong executing this command. Try using: /item <create/list>"));
         return true;
     }
 
     public void conversation(Player player) {
-        Conversation conversation = new ConversationFactory(CustomRecipes.getInstance())
+        Conversation conversation = new ConversationFactory(Forger.getInstance())
                 .addConversationAbandonedListener(event -> {
                     Chat chat = new Chat();
                     if (event.gracefulExit()) {
@@ -78,8 +80,7 @@ public class ItemCommand implements CommandExecutor {
                         String lore = event.getContext().getSessionData("lore").toString();
                         List<String> loreList = Arrays.asList(lore.split("<newline>"));
 
-                        ItemManager item = new ItemManager(player.getInventory().getItemInMainHand().getType(),
-                                displayName, loreList);
+                        ItemManager item = new ItemManager(player.getInventory().getItemInMainHand().getType(), displayName, loreList);
                         player.getInventory().addItem(item.getItemStack());
                         player.sendMessage(chat.color("<#3185fc>Item has been created and added to your inventory."));
                         return;

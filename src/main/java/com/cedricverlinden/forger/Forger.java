@@ -1,22 +1,22 @@
-package com.cedricverlinden.customrecipes;
-
-import com.cedricverlinden.customrecipes.commands.DebugCommand;
-import com.cedricverlinden.customrecipes.commands.ForgerCommand;
-import com.cedricverlinden.customrecipes.commands.ItemCommand;
-import com.cedricverlinden.customrecipes.commands.RecipeCommand;
-import com.cedricverlinden.customrecipes.listeners.InventoryListener;
-import com.cedricverlinden.customrecipes.listeners.PlayerListener;
-import com.cedricverlinden.customrecipes.managers.FileManager;
-import com.cedricverlinden.customrecipes.managers.ItemManager;
-import com.cedricverlinden.customrecipes.managers.RecipeManager;
-import com.cedricverlinden.customrecipes.utils.Log;
-import org.bukkit.plugin.java.JavaPlugin;
+package com.cedricverlinden.forger;
 
 import java.util.Objects;
 
-public final class CustomRecipes extends JavaPlugin {
+import org.bukkit.plugin.java.JavaPlugin;
 
-	private static CustomRecipes instance;
+import com.cedricverlinden.forger.commands.DebugCommand;
+import com.cedricverlinden.forger.commands.ItemCommand;
+import com.cedricverlinden.forger.commands.RecipeCommand;
+import com.cedricverlinden.forger.listeners.InventoryListener;
+import com.cedricverlinden.forger.listeners.PlayerListener;
+import com.cedricverlinden.forger.managers.FileManager;
+import com.cedricverlinden.forger.managers.ItemManager;
+import com.cedricverlinden.forger.managers.RecipeManager;
+import com.cedricverlinden.forger.utils.Log;
+
+public final class Forger extends JavaPlugin {
+
+	private static Forger instance;
 	public static Log log;
 
 	@Override
@@ -38,12 +38,11 @@ public final class CustomRecipes extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		log.info("Disabling CustomRecipes, bye!");
+		log.info("Disabling Forger, bye!");
 	}
 
 	private void registerCommands() {
 		log.info("Registering commands...");
-		Objects.requireNonNull(getCommand("forger")).setExecutor(new ForgerCommand());
 		Objects.requireNonNull(getCommand("debug")).setExecutor(new DebugCommand());
 		Objects.requireNonNull(getCommand("item")).setExecutor(new ItemCommand());
 		Objects.requireNonNull(getCommand("recipe")).setExecutor(new RecipeCommand());
@@ -57,7 +56,7 @@ public final class CustomRecipes extends JavaPlugin {
 		log.info("Listeners registered.");
 	}
 
-	public static CustomRecipes getInstance() {
+	public static Forger getInstance() {
 		return instance;
 	}
 }

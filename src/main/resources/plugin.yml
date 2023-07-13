@@ -1,7 +1,7 @@
-name: CustomRecipes
+name: Forger
 version: '${version}'
 author: mighty
-main: com.cedricverlinden.customrecipes.CustomRecipes
+main: com.cedricverlinden.forger.Forger
 api-version: '1.20'
 
 commands:
@@ -10,16 +10,16 @@ commands:
     description: Main plugin command
     usage: /<command>
   debug:
-    permission: customrecipes.debug
+    permission: forger.debug
     description: Debug command
     usage: /<command>
   item:
-    permission: customrecipes.manage.item
+    permission: forger.manage.item
     description: Item management command
     aliases: [items]
     usage: /<command>
   recipe:
-    permission: customrecipes.manage.recipe
+    permission: forger.manage.recipe
     description: Recipe management command
     aliases: [recipes]
     usage: /<command>

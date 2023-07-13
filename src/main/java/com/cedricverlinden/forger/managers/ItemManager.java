@@ -1,13 +1,4 @@
-package com.cedricverlinden.customrecipes.managers;
-
-import com.cedricverlinden.customrecipes.utils.Chat;
-import com.cedricverlinden.customrecipes.utils.Log;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+package com.cedricverlinden.forger.managers;
 
 import java.io.File;
 import java.util.HashMap;
@@ -15,6 +6,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.bukkit.Material;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import com.cedricverlinden.forger.utils.Chat;
+import com.cedricverlinden.forger.utils.Log;
+
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 
 public class ItemManager {
 
@@ -53,7 +55,7 @@ public class ItemManager {
 		configuration.set("material", material.toString());
 		configuration.set("displayName", displayName);
 		configuration.set("lore", lore);
-		
+
 		fileManager.save();
 		items.put(id, this);
 	}

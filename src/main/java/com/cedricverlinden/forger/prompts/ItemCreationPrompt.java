@@ -1,11 +1,10 @@
-package com.cedricverlinden.customrecipes.prompts;
+package com.cedricverlinden.forger.prompts;
 
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
 
 public final class ItemCreationPrompt implements Prompt {
 
-	// TODO: clean up the messages
 	@Override
 	public String getPromptText(ConversationContext context) {
 		return "What is the name of the item?";
@@ -32,9 +31,9 @@ public final class ItemCreationPrompt implements Prompt {
 		}
 
 		@Override
-        public boolean blocksForInput(ConversationContext context) {
-            return true;
-        }
+		public boolean blocksForInput(ConversationContext context) {
+			return true;
+		}
 
 		@Override
 		public Prompt acceptInput(ConversationContext context, String input) {

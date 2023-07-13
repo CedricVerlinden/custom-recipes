@@ -1,4 +1,4 @@
-package com.cedricverlinden.customrecipes.commands;
+package com.cedricverlinden.forger.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -6,9 +6,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import com.cedricverlinden.customrecipes.managers.ItemManager;
-import com.cedricverlinden.customrecipes.utils.Chat;
-import com.cedricverlinden.customrecipes.utils.Log;
+import com.cedricverlinden.forger.managers.ItemManager;
+import com.cedricverlinden.forger.utils.Chat;
+import com.cedricverlinden.forger.utils.Log;
 
 public class ForgerCommand implements CommandExecutor {
 
