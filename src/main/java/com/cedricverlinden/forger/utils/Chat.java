@@ -1,4 +1,4 @@
-package com.cedricverlinden.customrecipes.utils;
+package com.cedricverlinden.forger.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,21 +14,19 @@ public class Chat {
 
 	private final MiniMessage miniMessage;
 	private final List<TagResolver> tagResolvers = new ArrayList<>(
-		Arrays.asList(
-			StandardTags.color(),
-			StandardTags.decorations(),
-			StandardTags.rainbow(),
-			StandardTags.gradient(),
-			StandardTags.hoverEvent(),
-			StandardTags.reset()
-	));
+			Arrays.asList(
+					StandardTags.color(),
+					StandardTags.decorations(),
+					StandardTags.rainbow(),
+					StandardTags.gradient(),
+					StandardTags.hoverEvent(),
+					StandardTags.reset()));
 
 	public Chat() {
 		miniMessage = MiniMessage.builder()
 				.tags(TagResolver.builder()
 						.resolvers(tagResolvers)
-						.build()
-				)
+						.build())
 				.build();
 	}
 
