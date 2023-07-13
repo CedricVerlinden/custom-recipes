@@ -1,11 +1,11 @@
-package com.cedricverlinden.customrecipes.guis;
+package com.cedricverlinden.forger.guis;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
-import com.cedricverlinden.customrecipes.utils.Chat;
+import com.cedricverlinden.forger.utils.Chat;
 
 import net.kyori.adventure.text.Component;
 

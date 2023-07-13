@@ -1,4 +1,4 @@
-package com.cedricverlinden.customrecipes.utils;
+package com.cedricverlinden.forger.utils;
 
 import org.bukkit.Bukkit;
 

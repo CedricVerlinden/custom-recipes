@@ -1,7 +1,11 @@
-package com.cedricverlinden.customrecipes.managers;
+package com.cedricverlinden.forger.managers;
 
-import com.cedricverlinden.customrecipes.CustomRecipes;
-import com.cedricverlinden.customrecipes.utils.Log;
+import java.io.File;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -10,11 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 
-import java.io.File;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import com.cedricverlinden.forger.Forger;
+import com.cedricverlinden.forger.utils.Log;
 
 public class RecipeManager {
 
@@ -23,7 +24,6 @@ public class RecipeManager {
 	private final String recipeName;
 	private final List<List<String>> itemStacks;
 	private final String result;
-
 
 	public RecipeManager(String recipeName, List<List<String>> itemStacks, String result) {
 		this.recipeName = recipeName;
@@ -43,11 +43,11 @@ public class RecipeManager {
 		YamlConfiguration configuration = fileManager.getFile();
 		configuration.set("result", result);
 
-		NamespacedKey key = new NamespacedKey(CustomRecipes.getInstance(), recipeName);
+		NamespacedKey key = new NamespacedKey(Forger.getInstance(), recipeName);
 		ShapedRecipe recipe = new ShapedRecipe(key, resultMaterial);
 		recipe.shape("ABC", "DEF", "GHI");
 
-		char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'};
+		char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I' };
 		int letterIndex = 0;
 
 		for (int i = 0; i < 3; i++) {
@@ -92,10 +92,14 @@ public class RecipeManager {
 			String fileName = file.getName().substring(0, file.getName().length() - 4);
 			if (!missingFields.isEmpty()) {
 				String missingFieldsString = missingFields.size() > 1
-						? String.join(", ", missingFields.subList(0, missingFields.size() - 1)) + (missingFields.size() > 2 ? "," : "") + " and " + missingFields.get(missingFields.size() - 1)
+						? String.join(", ", missingFields.subList(0, missingFields.size() - 1))
+								+ (missingFields.size() > 2 ? "," : "") + " and "
+								+ missingFields.get(missingFields.size() - 1)
 						: missingFields.get(0);
 
-				log.error("Could not load recipe \"" + fileName + "\" because it is missing " + (missingFields.size() > 1 ? "the following fields: " : "the following field: ") + missingFieldsString);
+				log.error("Could not load recipe \"" + fileName + "\" because it is missing "
+						+ (missingFields.size() > 1 ? "the following fields: " : "the following field: ")
+						+ missingFieldsString);
 				continue;
 			}
 

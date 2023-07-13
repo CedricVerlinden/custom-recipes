@@ -1,4 +1,4 @@
-package com.cedricverlinden.customrecipes.listeners;
+package com.cedricverlinden.forger.listeners;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import com.cedricverlinden.customrecipes.managers.ItemManager;
-import com.cedricverlinden.customrecipes.managers.RecipeManager;
-import com.cedricverlinden.customrecipes.utils.Chat;
-import com.cedricverlinden.customrecipes.utils.Log;
+import com.cedricverlinden.forger.managers.ItemManager;
+import com.cedricverlinden.forger.managers.RecipeManager;
+import com.cedricverlinden.forger.utils.Chat;
+import com.cedricverlinden.forger.utils.Log;
 
 public class InventoryListener implements Listener {
 
@@ -50,9 +50,8 @@ public class InventoryListener implements Listener {
                     continue;
                 }
 
-                if (ItemManager.getItem(
-                        Chat.stripComponent(itemStack.displayName()).toLowerCase().replace(" ", "-")) != null) {
-                            row.add(Chat.stripComponent(itemStack.displayName()).toLowerCase().replace(" ", "-"));
+                if (ItemManager.getItem(Chat.stripComponent(itemStack.displayName()).toLowerCase().replace(" ", "-")) != null) {
+                    row.add(Chat.stripComponent(itemStack.displayName()).toLowerCase().replace(" ", "-"));
                     continue;
                 }
 

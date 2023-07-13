@@ -1,4 +1,4 @@
-package com.cedricverlinden.customrecipes.listeners;
+package com.cedricverlinden.forger.listeners;
 
 import java.util.HashMap;
 
@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import com.cedricverlinden.customrecipes.managers.ItemManager;
+import com.cedricverlinden.forger.managers.ItemManager;
 
 public class PlayerListener implements Listener {
 
@@ -20,7 +20,7 @@ public class PlayerListener implements Listener {
 			if (player.getInventory().contains(item.getItemStack())) {
 				player.getInventory().remove(item.getItemStack());
 			}
-			
+
 			player.getInventory().addItem(item.getItemStack());
 		}
 	}
