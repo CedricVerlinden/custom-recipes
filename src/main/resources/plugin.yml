@@ -9,10 +9,6 @@ commands:
     permission: forger.reload
     description: Main plugin command
     usage: /<command>
-  debug:
-    permission: forger.debug
-    description: Debug command
-    usage: /<command>
   item:
     permission: forger.manage.item
     description: Item management command

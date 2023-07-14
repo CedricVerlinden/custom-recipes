@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.cedricverlinden.forger.commands.DebugCommand;
 import com.cedricverlinden.forger.commands.ForgerCommand;
 import com.cedricverlinden.forger.commands.ItemCommand;
 import com.cedricverlinden.forger.commands.RecipeCommand;
@@ -45,7 +44,6 @@ public final class Forger extends JavaPlugin {
 	private void registerCommands() {
 		log.info("Registering commands...");
 		Objects.requireNonNull(getCommand("forger")).setExecutor(new ForgerCommand());
-		Objects.requireNonNull(getCommand("debug")).setExecutor(new DebugCommand());
 		Objects.requireNonNull(getCommand("item")).setExecutor(new ItemCommand());
 		Objects.requireNonNull(getCommand("recipe")).setExecutor(new RecipeCommand());
 		log.info("Commands registered.");
