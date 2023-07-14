@@ -3,6 +3,7 @@ package com.cedricverlinden.forger.listeners;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -25,6 +26,7 @@ public class InventoryListener implements Listener {
             return;
         }
 
+        Player player = (Player) event.getPlayer();
         boolean hasItem = false;
         for (int i = 1; i < 10; i++) {
             if (inventory.getItem(i) != null) {
@@ -68,5 +70,6 @@ public class InventoryListener implements Listener {
         }
 
         new RecipeManager(recipeName, itemStacks, result);
+        player.sendMessage(new Chat().color("<#3185fc>Recipe created!"));
     }
 }

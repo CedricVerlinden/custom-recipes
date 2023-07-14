@@ -39,6 +39,8 @@ public class RecipeCommand implements CommandExecutor {
                 return true;
             }
 
+            player.sendMessage(chat.color("<#f9dc5c>Close the inventory when you're done creating the recipe."));
+
             String recipeName = String.join(" ", args).substring(7).toLowerCase().replace(" ", "-");
 
             RecipeCreationGUI inventory = new RecipeCreationGUI(recipeName);
