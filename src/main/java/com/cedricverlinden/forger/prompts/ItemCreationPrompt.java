@@ -2,12 +2,19 @@ package com.cedricverlinden.forger.prompts;
 
 import org.bukkit.conversations.ConversationContext;
 import org.bukkit.conversations.Prompt;
+import org.bukkit.entity.Player;
+
+import com.cedricverlinden.forger.utils.Chat;
 
 public final class ItemCreationPrompt implements Prompt {
 
+	Chat chat = new Chat();
+
 	@Override
 	public String getPromptText(ConversationContext context) {
-		return "What is the name of the item?";
+		Player player = (Player) context.getForWhom();
+		player.sendMessage(chat.color("<dark_gray>[<red>ITEM CREATION<dark_gray>]<white> What name should be given to the item?"));
+		return "";
 	}
 
 	@Override
@@ -17,9 +24,7 @@ public final class ItemCreationPrompt implements Prompt {
 
 	@Override
 	public Prompt acceptInput(ConversationContext context, String input) {
-		context.getForWhom().sendRawMessage("The item name has been set to: " + input);
 		context.setSessionData("displayName", input);
-
 		return new LorePrompt();
 	}
 
@@ -27,7 +32,9 @@ public final class ItemCreationPrompt implements Prompt {
 
 		@Override
 		public String getPromptText(ConversationContext context) {
-			return "What is the lore of the item?";
+			Player player = (Player) context.getForWhom();
+			player.sendMessage(chat.color("<dark_gray>[<red>ITEM CREATION<dark_gray>]<white> What lore should be given to the item? (seperate lines with <newline>)"));
+			return "";
 		}
 
 		@Override
